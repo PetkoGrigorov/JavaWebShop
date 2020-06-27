@@ -1,0 +1,79 @@
+package controller;
+
+import framework.db.Database;
+import framework.db.DatabaseOrm;
+import framework.db.exceptoin.CustomOrmException;
+import model.User;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+
+public class AuthController {
+
+    public void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.getRequestDispatcher("/product/home.jsp").forward(req, resp);
+
+        System.out.println("AuthController.index");
+    }
+
+    public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+    }
+
+
+    public void post_login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String userEmail = req.getParameter("user_email");
+        String userPassword = req.getParameter("user_pass");
+        
+        System.out.println("email: " + userEmail);
+        System.out.println("pass: " + userPassword);
+
+        req.setAttribute("logged_name", "Hi " + userEmail);
+        this.login(req, resp);
+    }
+
+    public void registration(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.getRequestDispatcher("/registration.jsp").forward(req, resp);
+
+    }
+
+    public void post_registration(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException, CustomOrmException, SQLException, InstantiationException, IllegalAccessException {
+
+        String username = req.getParameter("user_name");
+        String pass = req.getParameter("user_pass");
+        String passRepeat = req.getParameter("user_pass_repeat");
+        String email = req.getParameter("user_email");
+        String fName = req.getParameter("user_fname");
+        String lName = req.getParameter("user_lname");
+
+        System.out.println("------------------------------");
+        System.out.println("user_name: " + username);
+        System.out.println("user_pass: " + pass);
+        System.out.println("user_email: " + email);
+        System.out.println("user_fname: " + fName);
+        System.out.println("user_lname: " + lName);
+        System.out.println("------------------------------");
+
+        Class classReference = User.class;
+        DatabaseOrm.fetchAll(classReference);
+
+//        Database.getInstance().insert("users", new HashMap<String, Object>(){{
+//            put("usermane", username);
+//            put("password", pass);
+//            put("email", email);
+//            put("fname", fName);
+//            put("lname", lName);
+//        }}).execute();
+
+        this.registration(req, resp);
+
+    }
+
+}
