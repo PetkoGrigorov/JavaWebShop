@@ -124,6 +124,14 @@ public class Database {
             this.relationNext = null;
             this.fromTable = null;
         }
+
+        public WhereClause(String column, WhereOperator operator, Object value, String fromTable) {
+            this.column = column;
+            this.value = value;
+            this.operator = operator;
+            this.relationNext = null;
+            this.fromTable = fromTable;
+        }
     }
 
     public enum WhereOperator {
@@ -137,34 +145,67 @@ public class Database {
     public Database where(List<WhereClause> whereClauseList) {
         String query = " WHERE ";
         for (WhereClause element : whereClauseList) {
-            String value = "";
+            String value = getWhereValue(element);
             String column = element.column;
-            if (element.value instanceof Integer){
-                value = intValue(element.value + "") + "";
-            } else {
-                value = stringValue(element.value + "");
-            }
-            String operator = "";
+            String operator = getWhereOperator(element);
             String relationNext;
-            switch (element.operator) {
-                case LOWER:
-                    operator = "<";
-                    break;
-                case GREATER:
-                    operator = ">";
-                    break;
-                case EQUAL:
-                    operator = "=";
-                default:
-                    break;
-            }
-            String tab = (element.fromTable == null) ? "" : element.fromTable + ".";
+            String tab = (element.fromTable == null || element.fromTable.trim().isEmpty()) ? "" : element.fromTable + ".";
             relationNext = (element.relationNext == null) ? "" : element.relationNext.toString();
             query += tab + column + operator + value + " " + relationNext + " ";
         }
         query = query.substring(0, query.length() - 1);
         this.queryBuilder += query;
         return this;
+    }
+
+    public Database where(WhereClause whereClause) {
+        this.queryBuilder += " WHERE " + getWhereElements(whereClause);
+        return this;
+    }
+
+    public Database andWhere(WhereClause whereClause) {
+        this.queryBuilder += " AND " + getWhereElements(whereClause);
+        return this;
+    }
+
+    public Database orWhere(WhereClause whereClause) {
+        this.queryBuilder += " OR " + getWhereElements(whereClause);
+        return this;
+    }
+
+    private String getWhereElements(WhereClause whereClause) {
+        String fromTable = (whereClause.fromTable == null || whereClause.fromTable.trim().isEmpty()) ? "" : whereClause.fromTable + ".";
+        String column = whereClause.column;
+        String operator = getWhereOperator(whereClause);
+        String value = getWhereValue(whereClause);
+        return fromTable + column + operator + value;
+    }
+
+    private String getWhereOperator(WhereClause whereClause) {
+        String operator = "";
+        switch (whereClause.operator) {
+            case LOWER:
+                operator = "<";
+                break;
+            case GREATER:
+                operator = ">";
+                break;
+            case EQUAL:
+                operator = "=";
+            default:
+                break;
+        }
+        return operator;
+    }
+
+    private String getWhereValue(WhereClause whereClause) {
+        String value = "";
+        if (whereClause.value instanceof Integer){
+            value = intValue(whereClause.value.toString()) + "";
+        } else {
+            value = stringValue(whereClause.value.toString());
+        }
+        return value;
     }
 
     public ResultSet fetch() {
@@ -178,11 +219,17 @@ public class Database {
 
     public boolean execute() {
         try {
-            return this.dbStatement.execute(this.queryBuilder);
+            return this.dbStatement.execute(this.queryBuilder, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public long getLastInsertedID() throws SQLException {
+        ResultSet generatedKeyCollection = this.dbStatement.getGeneratedKeys();
+        generatedKeyCollection.next();
+        return generatedKeyCollection.getLong(1);
     }
 
     public Database insert(String tableName, HashMap<String, Object> inputHashMap) {

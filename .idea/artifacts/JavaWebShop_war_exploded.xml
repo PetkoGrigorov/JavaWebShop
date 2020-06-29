@@ -7,6 +7,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="JavaWebShop" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="C:/Dev/Tools/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar" />
+        </element>
       </element>
     </root>
   </artifact>

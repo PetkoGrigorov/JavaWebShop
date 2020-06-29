@@ -23,6 +23,18 @@ public class AuthController {
 
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/login.jsp").forward(req, resp);
+
+//        Database.getInstance().update("users", new HashMap<String, Object>(){{
+//            put("username", "klint");
+//            put("fname", "Kiko");
+//            put("lname", "Loom");
+//            put("age", 32);
+//        }}).where(new Database.WhereClause("username", Database.WhereOperator.EQUAL, "loop", "users"))
+//                .andWhere(new Database.WhereClause("age", Database.WhereOperator.GREATER, 21, "users"))
+//                .orWhere(new Database.WhereClause("role", Database.WhereOperator.LOWER, 5, "user_role")).printQuery();
+
+
+
     }
 
 
@@ -40,6 +52,9 @@ public class AuthController {
     public void registration(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.getRequestDispatcher("/registration.jsp").forward(req, resp);
+
+//        resp.sendRedirect("/JavaWebShop_war_exploded/registration.jsp");
+
 
     }
 
@@ -61,16 +76,12 @@ public class AuthController {
         System.out.println("user_lname: " + lName);
         System.out.println("------------------------------");
 
-        Class classReference = User.class;
-        DatabaseOrm.fetchAll(classReference);
+        User.create(username, pass, email, fName, lName);
 
-//        Database.getInstance().insert("users", new HashMap<String, Object>(){{
-//            put("usermane", username);
-//            put("password", pass);
-//            put("email", email);
-//            put("fname", fName);
-//            put("lname", lName);
-//        }}).execute();
+
+
+
+
 
         this.registration(req, resp);
 
