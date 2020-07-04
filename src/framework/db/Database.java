@@ -1,6 +1,7 @@
 package framework.db;
 
 import framework.config.ConfigDB;
+import model.User;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -227,7 +228,9 @@ public class Database {
     }
 
     public long getLastInsertedID() throws SQLException {
+        System.out.println("Before getGeneratedKeys");
         ResultSet generatedKeyCollection = this.dbStatement.getGeneratedKeys();
+        System.out.println("After getGeneratedKeys");
         generatedKeyCollection.next();
         return generatedKeyCollection.getLong(1);
     }
@@ -345,6 +348,8 @@ public class Database {
         System.out.println(this.queryBuilder);
         return this;
     }
+
+
 
 
 

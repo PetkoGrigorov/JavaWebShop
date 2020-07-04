@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Acer_2
   Date: 19.6.2020 г.
@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../sections/header.jsp"></jsp:include>
 
+<%--
     <ul>
         <li>Cat</li>
         <li>Dog</li>
@@ -17,5 +18,16 @@
         <li>Eagle</li>
         <li>Spider</li>
     </ul>
+    --%>
+
+    <%
+        ArrayList<String> collection = (ArrayList<String>) request.getAttribute("productList");
+        for (String element : collection) {
+            String text = "<div> <a href>" + element + " </a></div>";
+            out.print(text);
+            
+
+        }
+    %>
 
 <jsp:include page="../sections/footer.jsp"></jsp:include>

@@ -19,7 +19,7 @@
 
         <div id="message">
 
-            ${input_name_user}
+            ${logged_name}
 
         </div>
 

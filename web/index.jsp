@@ -21,6 +21,7 @@
               <input type="password" name="user_password" placeholder="password">
               <input type="submit">
           </form> --%>
+
       </div>
       <div>
           <a href="/JavaWebShop_war_exploded/base/auth/registration">Registration</a>

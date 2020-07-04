@@ -24,6 +24,12 @@ public class DatabaseOrm {
         return objectCollection;
     }
 
+    public static Object fetch(Class classReference, ResultSet tableResultSet)
+            throws IllegalAccessException, SQLException, InstantiationException {
+
+        return entryToObjectMapper(classReference, tableResultSet);
+    }
+
     public static void insert(Object object) throws CustomOrmException, IllegalAccessException {
         Class classReference = object.getClass();
         String tableName = getOrmTableName(classReference);
@@ -41,6 +47,7 @@ public class DatabaseOrm {
     }
 
     private static String getOrmColumnName(Field classField) {
+        classField.setAccessible(true);
         if (classField.isAnnotationPresent(CustomOrmColumn.class)) {
             CustomOrmColumn fieldAnnotation = classField.getAnnotation(CustomOrmColumn.class);
             return fieldAnnotation.columnName();

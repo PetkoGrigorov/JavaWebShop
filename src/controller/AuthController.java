@@ -1,8 +1,8 @@
 package controller;
 
-import framework.db.Database;
-import framework.db.DatabaseOrm;
-import framework.db.exceptoin.CustomOrmException;
+import framework.annotation.MVCRoute;
+import framework.annotation.MVCRouteController;
+import framework.model.AuthUser;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 
+@MVCRouteController(value = "/auth/*")
 public class AuthController {
 
     public void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,6 +21,7 @@ public class AuthController {
         System.out.println("AuthController.index");
     }
 
+    @MVCRoute(path = "/auth/login", method = "GET")
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/login.jsp").forward(req, resp);
 
@@ -37,7 +38,7 @@ public class AuthController {
 
     }
 
-
+    @MVCRoute(path = "/auth/login", method = "POST")
     public void post_login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userEmail = req.getParameter("user_email");
         String userPassword = req.getParameter("user_pass");
@@ -45,10 +46,19 @@ public class AuthController {
         System.out.println("email: " + userEmail);
         System.out.println("pass: " + userPassword);
 
-        req.setAttribute("logged_name", "Hi " + userEmail);
+        AuthUser.authenticateUser(userEmail, userPassword);
+
+        if (!AuthUser.isUserAuthenticated()) {
+            req.setAttribute("message", "Invalid email or password!");
+            req.getSession().setAttribute("logged_name", null);
+        } else {
+            req.getSession().setAttribute("logged_name", AuthUser.getUserFullName());
+        }
+
         this.login(req, resp);
     }
 
+    @MVCRoute(path = "/auth/registration", method = "GET")
     public void registration(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.getRequestDispatcher("/registration.jsp").forward(req, resp);
@@ -58,8 +68,9 @@ public class AuthController {
 
     }
 
+    @MVCRoute(path = "/auth/registration", method = "POST")
     public void post_registration(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException, CustomOrmException, SQLException, InstantiationException, IllegalAccessException {
+            throws ServletException, IOException, SQLException {
 
         String username = req.getParameter("user_name");
         String pass = req.getParameter("user_pass");
@@ -77,11 +88,6 @@ public class AuthController {
         System.out.println("------------------------------");
 
         User.create(username, pass, email, fName, lName);
-
-
-
-
-
 
         this.registration(req, resp);
 
