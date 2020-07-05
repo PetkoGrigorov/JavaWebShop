@@ -22,12 +22,15 @@
 
     <%
         ArrayList<String> collection = (ArrayList<String>) request.getAttribute("productList");
-        for (String element : collection) {
-            String text = "<div> <a href>" + element + " </a></div>";
+        for (int i = 0; i < collection.size(); i++) {
+            String text = "<div> <a id=\"list_element\" href=\"description\">" + collection.get(i) + " </a></div>";
             out.print(text);
-            
-
         }
+
+//        for (String element : collection) {
+//            String text = "<div> <a id=\"list_element\" href=\" \">" + element + " </a></div>";
+//            out.print(text);
+//        }
     %>
 
 <jsp:include page="../sections/footer.jsp"></jsp:include>

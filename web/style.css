@@ -45,6 +45,17 @@ body{
     margin-right: 10px;
 }
 
+#list_element {
+    margin-right: 5px;
+    margin-left: 5px;
+    color: azure;
+    text-decoration: none;
+}
+
+#list_element:hover {
+    color: darkorange;
+}
+
 ul {
     padding: 0px;
 }

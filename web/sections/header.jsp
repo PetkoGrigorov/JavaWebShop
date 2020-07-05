@@ -4,6 +4,17 @@
 <head>
     <title>$Title$</title>
     <link rel="stylesheet" href="/JavaWebShop_war_exploded/style.css">
+    <style>
+        #list_element {
+            margin-right: 5px;
+            margin-left: 5px;
+            color: azure;
+            text-decoration: none;
+        }
+        #list_element:hover {
+            color: darkorange;
+        }
+    </style>
 </head>
 <body>
 

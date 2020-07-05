@@ -47,6 +47,14 @@ public class ProductController {
 
     }
 
+    @MVCRoute(path = "/product/description", method = "GET")
+    public void singleProduct(HttpServletRequest req, HttpServletResponse resp) {
+
+        System.out.println("Execute: controller.ProductController.singleProduct");
+
+
+    }
+
     public void create(HttpServletRequest req, HttpServletResponse resp) {
         System.out.println("Execute: ProductController.create");
     }
