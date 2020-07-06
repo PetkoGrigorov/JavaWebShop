@@ -2,7 +2,8 @@ package controller;
 
 import framework.annotation.MVCRoute;
 import framework.annotation.MVCRouteController;
-import framework.model.AuthUser;
+import framework.controllerSystem.WebController;
+import model.system.AuthUser;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -12,18 +13,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @MVCRouteController(value = "/auth/*")
-public class AuthController {
+public class AuthController extends WebController {
 
     public void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("/product/home.jsp").forward(req, resp);
+        display(req, resp, "home.jsp");
 
         System.out.println("AuthController.index");
     }
 
     @MVCRoute(path = "/auth/login", method = "GET")
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+//        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+//        resp.sendRedirect("/login.jsp");
+        display(req, resp, "login.jsp");
 
 //        Database.getInstance().update("users", new HashMap<String, Object>(){{
 //            put("username", "klint");
@@ -51,17 +54,18 @@ public class AuthController {
         if (!AuthUser.isUserAuthenticated()) {
             req.setAttribute("message", "Invalid email or password!");
             req.getSession().setAttribute("logged_name", null);
+            this.login(req, resp);
         } else {
             req.getSession().setAttribute("logged_name", AuthUser.getUserFullName());
         }
 
-        this.login(req, resp);
+        redirect(resp, "/base/product/list");
     }
 
     @MVCRoute(path = "/auth/registration", method = "GET")
     public void registration(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("/registration.jsp").forward(req, resp);
+        display(req, resp, "registration.jsp");
 
 //        resp.sendRedirect("/JavaWebShop_war_exploded/registration.jsp");
 
@@ -89,7 +93,17 @@ public class AuthController {
 
         User.create(username, pass, email, fName, lName);
 
-        this.registration(req, resp);
+        AuthUser.authenticateUser(email, pass);
+
+        if (!AuthUser.isUserAuthenticated()) {
+            req.getSession().setAttribute("logged_name", "Registration Fail");
+            this.registration(req, resp);
+        } else {
+            req.getSession().setAttribute("logged_name", AuthUser.getUserFullName());
+            redirect(resp, "/base/product/list");
+        }
+
+//        this.registration(req, resp);
 
     }
 

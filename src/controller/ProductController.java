@@ -1,6 +1,7 @@
 package controller;
 
 import framework.annotation.MVCRoute;
+import framework.controllerSystem.WebController;
 import framework.db.Database;
 import framework.db.DatabaseOrm;
 import framework.db.exceptoin.CustomOrmException;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
-public class ProductController {
+public class ProductController extends WebController {
 
     public void index(HttpServletRequest req, HttpServletResponse resp) {
         System.out.println("Execute: ProductController.index");
@@ -24,16 +27,18 @@ public class ProductController {
     public void list(HttpServletRequest req, HttpServletResponse resp) {
         try {
             ArrayList<Product> productCollection = Product.fetchAll();
-            ArrayList<String> productList = new ArrayList<>();
-            for (Product element : productCollection) {
-                productList.add(element.getTitle());
-            }
-            req.setAttribute("productList", productList);
-            req.getRequestDispatcher("/product/list.jsp").forward(req, resp);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+//            ArrayList<String> productList = new ArrayList<>();
+//            for (Product element : productCollection) {
+//                productList.add(element.getTitle());
+//            }
+
+//            HashMap<String, String> productList = new LinkedHashMap<>();
+//            for (Product element : productCollection) {
+//                productList.put(element.getTitle(), element.getPrice());
+//            }
+
+            req.setAttribute("productList", productCollection);
+            display(req, resp, "product/list.jsp");
         } catch (CustomOrmException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
@@ -50,8 +55,20 @@ public class ProductController {
     @MVCRoute(path = "/product/description", method = "GET")
     public void singleProduct(HttpServletRequest req, HttpServletResponse resp) {
 
-        System.out.println("Execute: controller.ProductController.singleProduct");
+        int id = Integer.parseInt(req.getQueryString());
+        try {
+            Product product = Product.fetchProductByID(id);
+            session(req, "product", product);
+            System.out.println(((Product)req.getSession().getAttribute("product")).getTitle());
+            display(req, resp, "product/single_product.jsp");
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
     }
 

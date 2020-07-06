@@ -45,12 +45,12 @@ public class User {
             put("user_fname", fName);
             put("user_lname", lName);
         }}).printQuery().execute();
-        long lastInsertedID = Database.getInstance().getLastInsertedID();
-        int userRoleID = 1;
-        Database.getInstance().insert("user_roles", new HashMap<String, Object>(){{
-            put("user_id", lastInsertedID);
-            put("role_id", userRoleID);
-        }}).execute();
+//        long lastInsertedID = Database.getInstance().getLastInsertedID();
+//        int userRoleID = 1;
+//        Database.getInstance().insert("user_roles", new HashMap<String, Object>(){{
+//            put("user_id", lastInsertedID);
+//            put("role_id", userRoleID);
+//        }}).execute();
     }
 
     public static void create(User user) throws CustomOrmException, SQLException, IllegalAccessException {

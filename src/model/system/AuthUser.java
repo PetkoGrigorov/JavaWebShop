@@ -1,4 +1,4 @@
-package framework.model;
+package model.system;
 
 import model.User;
 

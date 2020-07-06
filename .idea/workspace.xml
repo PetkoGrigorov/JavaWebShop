@@ -7,14 +7,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf74db72-211f-486b-9ee7-cbad03a0afa9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/product/single_product.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/controller/HomeController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/sections/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/sections/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/framework/controllerSystem/WebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/framework/controllerSystem/WebController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/framework/model/AuthUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/model/User$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/model/User$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/model/User$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/WEB-INF/classes/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/product/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaWebShop_war_exploded/product/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaWebShop/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaWebShop/controller/HomeController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaWebShop/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/framework/controllerSystem/WebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaWebShop/framework/controllerSystem/WebController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/framework/model/AuthUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaWebShop/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/model/User$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaWebShop/model/User$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/model/User$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaWebShop/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaWebShop/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/controllerSystem/WebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/controllerSystem/WebController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/model/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/system/AuthUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/product/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/product/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/sections/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/sections/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +51,9 @@
       <list>
         <option value="CSS File" />
         <option value="jsf" />
-        <option value="Jsp File" />
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -204,6 +226,8 @@
       <workItem from="1593704407960" duration="10541000" />
       <workItem from="1593840852607" duration="23776000" />
       <workItem from="1593943749592" duration="9269000" />
+      <workItem from="1593960363363" duration="2861000" />
+      <workItem from="1594040489552" duration="16574000" />
     </task>
     <servers />
   </component>
@@ -220,10 +244,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1593943997500" />
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1593867771468">
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1594065394903">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1593867771468" />
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1594065394903" />
     <state x="500" y="189" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1593712274055">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -244,54 +268,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="581" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593710994720" />
-    <state width="965" height="272" key="GridCell.Tab.0.bottom" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.0.bottom" timestamp="1594065445928">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.0.center" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594065445928" />
+    <state width="965" height="272" key="GridCell.Tab.0.center" timestamp="1594065445928">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.0.left" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1594065445928" />
+    <state width="965" height="272" key="GridCell.Tab.0.left" timestamp="1594065445928">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.0.right" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1594065445928" />
+    <state width="965" height="272" key="GridCell.Tab.0.right" timestamp="1594065445928">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.1.bottom" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1594065445928" />
+    <state width="965" height="272" key="GridCell.Tab.1.bottom" timestamp="1594065445814">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.1.center" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594065445814" />
+    <state width="965" height="272" key="GridCell.Tab.1.center" timestamp="1594065445814">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.1.left" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1594065445814" />
+    <state width="965" height="272" key="GridCell.Tab.1.left" timestamp="1594065445813">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.1.right" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1594065445813" />
+    <state width="965" height="272" key="GridCell.Tab.1.right" timestamp="1594065445814">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.2.bottom" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1594065445814" />
+    <state width="965" height="272" key="GridCell.Tab.2.bottom" timestamp="1594065445813">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.2.center" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594065445813" />
+    <state width="965" height="272" key="GridCell.Tab.2.center" timestamp="1594065445813">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.2.left" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1594065445813" />
+    <state width="965" height="272" key="GridCell.Tab.2.left" timestamp="1594065445813">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
-    <state width="965" height="272" key="GridCell.Tab.2.right" timestamp="1593957070277">
+    <state width="965" height="272" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1594065445813" />
+    <state width="965" height="272" key="GridCell.Tab.2.right" timestamp="1594065445813">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="965" height="272" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1593957070277" />
+    <state width="965" height="272" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1594065445813" />
     <state width="964" height="272" key="GridCell.Tab.3.bottom" timestamp="1593863443241">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -312,9 +336,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="281" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593711512384" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1593943773816">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1594040488490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1593943773816" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1594040488490" />
   </component>
 </project>
