@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
+import java.util.HashMap;
 
 
 @WebServlet(value = "/base/*")
@@ -132,10 +132,9 @@ public class FrontController extends HttpServlet {
 
     private String getController(String[] pathArr) {
         try {
-            String controller = "controller." + pathArr[0].substring(0,1).toUpperCase() + pathArr[0].substring(1) + "Controller";
+            String controller = "controller." + pathArr[0].substring(0, 1).toUpperCase() + pathArr[0].substring(1) + "Controller";
             return controller;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return "controller.HomeController";
         }
     }
@@ -144,8 +143,7 @@ public class FrontController extends HttpServlet {
         try {
             String method = pathArr[1];
             return method;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return "index";
         }
     }
@@ -165,12 +163,14 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        requestProcessor("GET", req, resp);
+
         requestProcessorAnnotation("GET", req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        requestProcessor("POST", req, resp);
+
         requestProcessorAnnotation("POST", req, resp);
     }
 

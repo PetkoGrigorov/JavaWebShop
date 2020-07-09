@@ -27,16 +27,6 @@ public class ProductController extends WebController {
     public void list(HttpServletRequest req, HttpServletResponse resp) {
         try {
             ArrayList<Product> productCollection = Product.fetchAll();
-//            ArrayList<String> productList = new ArrayList<>();
-//            for (Product element : productCollection) {
-//                productList.add(element.getTitle());
-//            }
-
-//            HashMap<String, String> productList = new LinkedHashMap<>();
-//            for (Product element : productCollection) {
-//                productList.put(element.getTitle(), element.getPrice());
-//            }
-
             req.setAttribute("productList", productCollection);
             display(req, resp, "product/list.jsp");
         } catch (CustomOrmException e) {
@@ -52,14 +42,16 @@ public class ProductController extends WebController {
 
     }
 
-    @MVCRoute(path = "/product/description", method = "GET")
+    @MVCRoute(path = "/product/details", method = "GET")
     public void singleProduct(HttpServletRequest req, HttpServletResponse resp) {
+        int id = 0;
+        if (hasQuery(req, "product_id")) {
+            id = Integer.parseInt(getQueryValue(req, "product_id"));
+        }
 
-        int id = Integer.parseInt(req.getQueryString());
         try {
             Product product = Product.fetchProductByID(id);
             session(req, "product", product);
-            System.out.println(((Product)req.getSession().getAttribute("product")).getTitle());
             display(req, resp, "product/single_product.jsp");
 
         } catch (SQLException e) {
