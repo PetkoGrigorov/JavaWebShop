@@ -37,9 +37,9 @@
         <div id="menu">
             <ul>
                 <li> <a href="/JavaWebShop_war_exploded/base/home/index">Home</a> </li>
-                <li> <a <%--href="/Exercise_war_exploded/subjects/art.jsp"--%>>Art</a> </li>
-                <li><a <%--href="/Exercise_war_exploded/subjects/math.jsp"--%>>Math</a> </li>
-                <li><a<%-- href="/Exercise_war_exploded/subjects/history.jsp"--%>>History</a> </li>
+                <li> <a href="/JavaWebShop_war_exploded/base/home/index">CART</a> </li>
+                <%--<li><a href="/Exercise_war_exploded/subjects/math.jsp">Math</a> </li> --%>
+                <%--<li><a<%-- href="/Exercise_war_exploded/subjects/history.jsp">History</a> </li> --%>
             </ul>
         </div>
     </div>

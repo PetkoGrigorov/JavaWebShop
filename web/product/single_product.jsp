@@ -9,13 +9,18 @@
 <jsp:include page="../sections/header.jsp"></jsp:include>
     <%
         Product product = (Product) request.getSession().getAttribute("product");
-        String productID = product.getProductId();
-        out.print("<div>" + product.getTitle() + "</div>");
-        out.print("<div>" + product.getDescription() + "</div>");
-        out.print("<div>" + product.getPrice() + "</div>");
+        if (product == null) {
+            String productNull = "<div>Product not found</div>";
+            out.print(productNull);
+        } else {
+            String productID = product.getProductId();
+            out.print("<div>" + product.getTitle() + "</div>");
+            out.print("<div>" + product.getDescription() + "</div>");
+            out.print("<div>" + product.getPrice() + "</div>");
 
-        String buy = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"details?product_id=" + productID + "\">" + "Buy now" + " </a></div>";
-        out.print(buy);
+            String buy = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"details?product_id=" + productID + "\">" + "Buy now" + " </a></div>";
+            out.print(buy);
+        }
 
     %>
 

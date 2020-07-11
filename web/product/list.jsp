@@ -41,12 +41,38 @@
                 String cartAdd = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"details?product_id=" + productID + "\">" + "Add to cart" + " </a></div>";
                 String separator = "<hr>";
                 out.print(title + price + buy + cartAdd + separator);
+
             }
+        }
+        int pageLimit = Integer.parseInt ((request.getSession().getAttribute("page_limit")).toString());
+        int productCount = Integer.parseInt ((request.getSession().getAttribute("product_count")).toString());
+        int pageIndex = Integer.parseInt ((request.getSession().getAttribute("page_index")).toString());
+        int previousIndex = (pageIndex < 2) ? 1 : (pageIndex - 1);
+        int nextIndex = pageIndex + 1;
+
+        if (pageIndex > 1) {
+            String previousPage = "<div style=\"display: inline-block; width: 150px\"><a href=\"list?page_index=" + previousIndex + "\">Previous page</a></div>";
+            out.print(previousPage);
+        } else {
+            out.print("<div style=\"display: inline-block; width: 150px\"></div>");
+        }
+
+        int coefficient = 1;
+        while ((productCount - pageLimit * coefficient) >= 0) {
+            String forPageNumber = "<span style=\"padding-left: 10px; padding-right: 10px\">" + coefficient + "</span>";
+            out.print(forPageNumber);
+            coefficient ++;
+        }
+
+        if ((pageIndex * pageLimit) < productCount) {
+            String nextPage = "<div style=\"display: inline-block; width: 150px\"><a href=\"list?page_index=" + nextIndex + "\">Next page</a></div>";
+            out.print(nextPage);
         }
 
 
     %>
 
 <div style="display: inline-block; width: 30px"></div>
+<span style="padding-left: 10px; padding-right: 10px"></span>
 
 <jsp:include page="../sections/footer.jsp"></jsp:include>

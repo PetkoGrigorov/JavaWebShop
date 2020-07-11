@@ -48,6 +48,24 @@ public class Product {
         return  productCollection;
     }
 
+    public static ArrayList<Product> fetchLimit(int limit) throws SQLException, InstantiationException, IllegalAccessException {
+        ArrayList<Product> collection = new ArrayList<>();
+        ResultSet result = Database.getInstance().selectAll("products").limit(limit).printQuery().fetch();
+        while (result.next()) {
+            collection.add((Product) DatabaseOrm.fetch(Product.class, result));
+        }
+        return collection;
+    }
+
+    public static ArrayList<Product> fetchLimit(int limit, int offset) throws SQLException, InstantiationException, IllegalAccessException {
+        ArrayList<Product> collection = new ArrayList<>();
+        ResultSet result = Database.getInstance().selectAll("products").limit(limit, offset).printQuery().fetch();
+        while (result.next()) {
+            collection.add((Product) DatabaseOrm.fetch(Product.class, result));
+        }
+        return collection;
+    }
+
     public static Product fetchProductByID(int id)
             throws SQLException, InstantiationException, IllegalAccessException {
         ResultSet result = Database.getInstance().selectAll("products")

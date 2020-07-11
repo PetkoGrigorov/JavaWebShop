@@ -209,6 +209,16 @@ public class Database {
         return value;
     }
 
+    public Database limit(int limit, int offset) {
+        this.queryBuilder += " LIMIT " + offset + ", " + limit;
+        return this;
+    }
+
+    public Database limit(int limit) {
+        this.queryBuilder += " LIMIT " + limit;
+        return this;
+    }
+
     public ResultSet fetch() {
         try {
             return this.dbStatement.executeQuery(this.queryBuilder);
