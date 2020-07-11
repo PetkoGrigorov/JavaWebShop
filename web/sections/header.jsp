@@ -1,4 +1,5 @@
-
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -37,7 +38,17 @@
         <div id="menu">
             <ul>
                 <li> <a href="/JavaWebShop_war_exploded/base/home/index">Home</a> </li>
-                <li> <a href="/JavaWebShop_war_exploded/base/home/index">CART</a> </li>
+                <li> <a href="/JavaWebShop_war_exploded/base/cart/list">CART
+                <%
+
+                    ArrayList<Product> cart = (ArrayList<Product>) request.getSession().getAttribute("cart_list");
+                    int count = 0;
+                    if (cart != null) {
+                        count = cart.size();
+                    }
+                    out.print(count);
+                %>
+                </a> </li>
                 <%--<li><a href="/Exercise_war_exploded/subjects/math.jsp">Math</a> </li> --%>
                 <%--<li><a<%-- href="/Exercise_war_exploded/subjects/history.jsp">History</a> </li> --%>
             </ul>
