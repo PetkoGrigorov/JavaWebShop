@@ -53,10 +53,10 @@ public class AuthController extends WebController {
 
         if (!AuthUser.isUserAuthenticated()) {
             req.setAttribute("message", "Invalid email or password!");
-            req.getSession().setAttribute("logged_name", null);
+            setSessionAttrib(req, "logged_name", null);
             this.login(req, resp);
         } else {
-            req.getSession().setAttribute("logged_name", AuthUser.getUserFullName());
+            setSessionAttrib(req, "logged_name", AuthUser.getUserFullName());
         }
 
         redirect(resp, "/base/product/list");

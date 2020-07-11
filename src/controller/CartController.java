@@ -21,28 +21,34 @@ public class CartController extends WebController {
     @MVCRoute(path = "/cart/add", method = "GET")
     public void addToCart(HttpServletRequest req, HttpServletResponse resp) {
 
-        ArrayList<Product> cart = null;
-        if (getSessionAttrib(req, "cart_list") == null) {
-            cart = new ArrayList<>();
+        if (getSessionAttrib(req, "logged_name") == null) {
+            redirect(resp, "/base/auth/login");
         } else {
-            cart = (ArrayList<Product>) getSessionAttrib(req, "cart_list");
+
+            ArrayList<Product> cart = null;
+            if (getSessionAttrib(req, "cart_list") == null) {
+                cart = new ArrayList<>();
+            } else {
+                cart = (ArrayList<Product>) getSessionAttrib(req, "cart_list");
+            }
+
+            int id = 0;
+            if (hasQuery(req, "product_id")) {
+                id = Integer.parseInt(getQueryValue(req, "product_id"));
+            }
+            try {
+                cart.add(Product.fetchProductByID(id));
+                setSessionAttrib(req, "cart_list", cart);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            redirect(resp, "/base/product/list");
         }
 
-        int id = 0;
-        if (hasQuery(req, "product_id")) {
-            id = Integer.parseInt(getQueryValue(req, "product_id"));
-        }
-        try {
-            cart.add(Product.fetchProductByID(id));
-            setSessionAttrib(req, "cart_list", cart);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        redirect(resp, "/base/product/list");
     }
 
     @MVCRoute(path = "/cart/remove", method = "GET")

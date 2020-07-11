@@ -83,7 +83,7 @@ public class ProductController extends WebController {
     }
 
     private int getPageLimit(HttpServletRequest req) {
-        int pageLimit = 4;
+        int pageLimit = 10;
         if (getSessionAttrib(req, "page_limit") != null) {
             pageLimit = Integer.parseInt ((req.getSession().getAttribute("page_limit")).toString());
         }
