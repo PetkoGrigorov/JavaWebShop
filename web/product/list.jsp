@@ -28,6 +28,7 @@
 <hr>
 
     <%
+
         ArrayList<Product> collection = (ArrayList<Product>) request.getAttribute("productList");
         if (collection != null) {
             for (int i = 0; i < collection.size(); i++) {
@@ -41,9 +42,9 @@
                 String cartAdd = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"details?product_id=" + productID + "\">" + "Add to cart" + " </a></div>";
                 String separator = "<hr>";
                 out.print(title + price + buy + cartAdd + separator);
-
             }
         }
+
         int pageLimit = Integer.parseInt ((request.getSession().getAttribute("page_limit")).toString());
         int productCount = Integer.parseInt ((request.getSession().getAttribute("product_count")).toString());
         int pageIndex = Integer.parseInt ((request.getSession().getAttribute("page_index")).toString());
@@ -58,10 +59,22 @@
         }
 
         int coefficient = 1;
-        while ((productCount - pageLimit * coefficient) >= 0) {
-            String forPageNumber = "<span style=\"padding-left: 10px; padding-right: 10px\">" + coefficient + "</span>";
+        while ((productCount - pageLimit * coefficient) > 0) {
+            String color = "color: indigo";
+            if (pageIndex == coefficient) {
+                color = "color: darkorange";
+            }
+            String forPageNumber = "<span style=\"padding-left: 10px; padding-right: 10px\"><a style=\"" + color + "\" href=\"list?page_index=" + coefficient + "\">" + coefficient + "</a></span>";
             out.print(forPageNumber);
             coefficient ++;
+        }
+        if (coefficient > 1) {
+            String color = "color: indigo";
+            if (pageIndex == coefficient) {
+                color = "color: darkorange";
+            }
+            String forPageNumber = "<span style=\"padding-left: 10px; padding-right: 10px\"><a style=\"" + color + "\" href=\"list?page_index=" + coefficient + "\">" + coefficient + "</a></span>";
+            out.print(forPageNumber);
         }
 
         if ((pageIndex * pageLimit) < productCount) {
@@ -69,10 +82,14 @@
             out.print(nextPage);
         }
 
-
     %>
-
-<div style="display: inline-block; width: 30px"></div>
-<span style="padding-left: 10px; padding-right: 10px"></span>
+<div></div>
+<div>
+    <div style="display: inline-block; width: 200px">Shown products on page:</div>
+    <span><a href="list?page_limit=3">3</a></span>
+    <span><a href="list?page_limit=5">5</a></span>
+    <span><a href="list?page_limit=10">10</a></span>
+    <span><a href="list?page_limit=12">12</a></span>
+</div>
 
 <jsp:include page="../sections/footer.jsp"></jsp:include>

@@ -25,8 +25,15 @@ public class ProductController extends WebController {
             setSessionAttrib(req, "product_count", productCount);
             int pageIndex = getPageIndex(req);
             int pageLimit = getPageLimit(req);
+            int numberOfPages = (int) Math.ceil(productCount*1.0/pageLimit);
+            if (pageIndex > numberOfPages) {
+                pageIndex = numberOfPages;
+            }
+            if (pageIndex < 1) {
+                pageIndex = 1;
+            }
             int offsetCorrection = (pageIndex < 1) ? 0 : (pageIndex - 1);
-
+            setSessionAttrib(req, "page_index", pageIndex);
 
             ArrayList<Product> productCollection = Product.fetchLimit(pageLimit, (offsetCorrection * pageLimit));
             req.setAttribute("productList", productCollection);
@@ -72,12 +79,11 @@ public class ProductController extends WebController {
             pageIndex = Integer.parseInt((req.getSession().getAttribute("page_index")).toString());
         }
         pageIndex = (hasQuery(req, "page_index")) ? Integer.parseInt(getQueryValue(req,"page_index")) : pageIndex;
-        setSessionAttrib(req, "page_index", pageIndex);
         return pageIndex;
     }
 
     private int getPageLimit(HttpServletRequest req) {
-        int pageLimit = 10;
+        int pageLimit = 4;
         if (getSessionAttrib(req, "page_limit") != null) {
             pageLimit = Integer.parseInt ((req.getSession().getAttribute("page_limit")).toString());
         }
