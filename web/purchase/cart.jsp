@@ -29,7 +29,9 @@
         out.print("<div> Sum: " + sum + "<div>");
         }
     %>
-
+<div> </div>
+<div><a href="/JavaWebShop_war_exploded/base/buy/pay">Pay</a></div>
+<div> </div>
 <div style="display: inline-block; width: 500px"><a href="/JavaWebShop_war_exploded/base/product/list">Continue shopping</a></div>
 
 
