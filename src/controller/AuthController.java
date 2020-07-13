@@ -59,7 +59,7 @@ public class AuthController extends WebController {
             setSessionAttrib(req, "logged_name", AuthUser.getUserFullName());
         }
 
-        redirect(resp, "/base/product/list");
+        redirectAbsolutePath(resp, "/base/product/list");
     }
 
     @MVCRoute(path = "/auth/registration", method = "GET")
@@ -100,7 +100,7 @@ public class AuthController extends WebController {
             this.registration(req, resp);
         } else {
             req.getSession().setAttribute("logged_name", AuthUser.getUserFullName());
-            redirect(resp, "/base/product/list");
+            redirectAbsolutePath(resp, "/base/product/list");
         }
 
 //        this.registration(req, resp);

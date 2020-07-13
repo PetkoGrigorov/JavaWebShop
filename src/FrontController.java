@@ -19,7 +19,7 @@ import java.util.HashMap;
 @WebServlet(value = "/base/*")
 public class FrontController extends HttpServlet {
 
-    private void requestProcessor(String methodType, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    /*private void requestProcessor(String methodType, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pathInfo = req.getPathInfo();
         String[] pathArr = pathInfo.substring(1).split("/");
         String controllerClassId = getController(pathArr);
@@ -60,7 +60,7 @@ public class FrontController extends HttpServlet {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     private void requestProcessorAnnotation(String methodType, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pathInfo = req.getPathInfo();

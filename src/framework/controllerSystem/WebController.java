@@ -10,7 +10,7 @@ public abstract class WebController {
 
     private String absolutePath = "http://localhost:8080/JavaWebShop_war_exploded";
 
-    public void redirect(HttpServletResponse resp, String path) {
+    public void redirectAbsolutePath(HttpServletResponse resp, String path) {
         try {
             resp.sendRedirect(this.absolutePath + path);
         } catch (IOException e) {
