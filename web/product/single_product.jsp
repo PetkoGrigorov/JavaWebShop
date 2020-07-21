@@ -18,7 +18,7 @@
             out.print("<div>" + product.getDescription() + "</div>");
             out.print("<div>" + product.getPrice() + "</div>");
 
-            String buy = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"details?product_id=" + productID + "\">" + "Buy now" + " </a></div>";
+            String buy = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"/JavaWebShop_war_exploded/base/buy/pay?product_id=" + productID + "\">" + "Pay" + " </a></div>";
             out.print(buy);
             String cartAdd = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"/JavaWebShop_war_exploded/base/cart/add?product_id=" + productID + "\">" + "Add to cart" + " </a></div>";
             out.print(cartAdd);

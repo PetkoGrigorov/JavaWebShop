@@ -5,6 +5,7 @@ import model.User;
 public class AuthUser {
 
     private static User authUser = null;
+    public static boolean isUserLogged = isUserAuthenticated();
 
     public static void authenticateUser(String email, String password) {
         authUser = User.fetchUser(email, password);
@@ -20,6 +21,10 @@ public class AuthUser {
 
     public static String getUserFullName() {
         return authUser.getUserFullName();
+    }
+
+    public static void destroyUser() {
+        AuthUser.authUser = null;
     }
 
 

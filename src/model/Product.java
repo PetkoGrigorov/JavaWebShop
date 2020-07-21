@@ -48,16 +48,7 @@ public class Product {
         return  productCollection;
     }
 
-    public static ArrayList<Product> fetchLimit(int limit) throws SQLException, InstantiationException, IllegalAccessException {
-        ArrayList<Product> collection = new ArrayList<>();
-        ResultSet result = Database.getInstance().selectAll("products").limit(limit).printQuery().fetch();
-        while (result.next()) {
-            collection.add((Product) DatabaseOrm.fetch(Product.class, result));
-        }
-        return collection;
-    }
-
-    public static ArrayList<Product> fetchLimit(int limit, int offset) throws SQLException, InstantiationException, IllegalAccessException {
+    public static ArrayList<Product> fetchLimitAll(int limit, int offset) throws SQLException, InstantiationException, IllegalAccessException {
         ArrayList<Product> collection = new ArrayList<>();
         ResultSet result = Database.getInstance().selectAll("products").limit(limit, offset).printQuery().fetch();
         while (result.next()) {
@@ -65,6 +56,34 @@ public class Product {
         }
         return collection;
     }
+
+    public static ArrayList<Product> fetchLimitLike(String column, String likeValue, int limit, int offset) throws SQLException, InstantiationException, IllegalAccessException {
+        ArrayList<Product> collection = new ArrayList<>();
+        ResultSet result = Database.getInstance().selectAll("products").like(column, likeValue).limit(limit, offset).printQuery().fetch();
+        while (result.next()) {
+            collection.add((Product) DatabaseOrm.fetch(Product.class, result));
+        }
+        return collection;
+    }
+
+    public static int getCountAll() throws SQLException {
+        int productCount = 0;
+        ResultSet resultSet = Database.getInstance().count("products").printQuery().fetch();
+        while (resultSet.next()) {
+            productCount = resultSet.getInt("entry_count");
+        }
+        return productCount;
+    }
+
+    public static int getCountLike(String column, String likeValue) throws SQLException {
+        int productCount = 0;
+        ResultSet resultSet = Database.getInstance().count("products").like(column, likeValue).printQuery().fetch();
+        while (resultSet.next()) {
+            productCount = resultSet.getInt("entry_count");
+        }
+        return productCount;
+    }
+
 
     public static Product fetchProductByID(int id)
             throws SQLException, InstantiationException, IllegalAccessException {

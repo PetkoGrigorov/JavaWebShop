@@ -1,5 +1,6 @@
 package controller;
 
+import config.RouteMap;
 import framework.annotation.MVCRoute;
 import framework.annotation.MVCRouteController;
 import framework.controllerSystem.WebController;
@@ -24,8 +25,12 @@ public class AuthController extends WebController {
 
     @MVCRoute(path = "/auth/login", method = "GET")
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("/login.jsp").forward(req, resp);
-//        resp.sendRedirect("/login.jsp");
+
+        if (AuthUser.isUserAuthenticated()) {
+            redirectAbsolutePath(resp, RouteMap.PRODUCT_LIST);
+            return;
+        }
+
         display(req, resp, "login.jsp");
 
 //        Database.getInstance().update("users", new HashMap<String, Object>(){{
@@ -37,12 +42,16 @@ public class AuthController extends WebController {
 //                .andWhere(new Database.WhereClause("age", Database.WhereOperator.GREATER, 21, "users"))
 //                .orWhere(new Database.WhereClause("role", Database.WhereOperator.LOWER, 5, "user_role")).printQuery();
 
-
-
     }
 
     @MVCRoute(path = "/auth/login", method = "POST")
     public void post_login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        if (AuthUser.isUserAuthenticated()) {
+            redirectAbsolutePath(resp, RouteMap.PRODUCT_LIST);
+            return;
+        }
+
         String userEmail = req.getParameter("user_email");
         String userPassword = req.getParameter("user_pass");
         
@@ -54,16 +63,28 @@ public class AuthController extends WebController {
         if (!AuthUser.isUserAuthenticated()) {
             req.setAttribute("message", "Invalid email or password!");
             setSessionAttrib(req, "logged_name", null);
-            this.login(req, resp);
         } else {
             setSessionAttrib(req, "logged_name", AuthUser.getUserFullName());
         }
 
-        redirectAbsolutePath(resp, "/base/product/list");
+        this.login(req, resp);
+    }
+
+    @MVCRoute(path = "/auth/logout", method = "GET")
+    public void logout(HttpServletRequest req, HttpServletResponse resp) {
+
+        AuthUser.destroyUser();
+        req.getSession().invalidate();
+        redirectAbsolutePath(resp, RouteMap.HOME);
     }
 
     @MVCRoute(path = "/auth/registration", method = "GET")
     public void registration(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        if (AuthUser.isUserAuthenticated()) {
+            redirectAbsolutePath(resp, RouteMap.PRODUCT_LIST);
+            return;
+        }
 
         display(req, resp, "registration.jsp");
 
@@ -75,6 +96,11 @@ public class AuthController extends WebController {
     @MVCRoute(path = "/auth/registration", method = "POST")
     public void post_registration(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException, SQLException {
+
+        if (AuthUser.isUserAuthenticated()) {
+            redirectAbsolutePath(resp, RouteMap.PRODUCT_LIST);
+            return;
+        }
 
         String username = req.getParameter("user_name");
         String pass = req.getParameter("user_pass");
@@ -100,7 +126,7 @@ public class AuthController extends WebController {
             this.registration(req, resp);
         } else {
             req.getSession().setAttribute("logged_name", AuthUser.getUserFullName());
-            redirectAbsolutePath(resp, "/base/product/list");
+            redirectAbsolutePath(resp, RouteMap.PRODUCT_LIST);
         }
 
 //        this.registration(req, resp);

@@ -49,6 +49,7 @@ public abstract class WebController {
             String[] splitArr = element.split("=");
             if (splitArr.length == 1) {
                 keyValueHash.put(splitArr[0], splitArr[0]);
+                return keyValueHash;
             }
             keyValueHash.put(splitArr[0], splitArr[1]);
         }

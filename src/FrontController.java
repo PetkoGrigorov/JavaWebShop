@@ -1,6 +1,7 @@
 
-import controller.PageNotFoundController;
+import framework.annotation.Authenticated;
 import framework.annotation.MVCRoute;
+import model.system.AuthUser;
 
 
 import javax.servlet.ServletException;
@@ -10,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 
 @WebServlet(value = "/base/*")
@@ -65,7 +64,7 @@ public class FrontController extends HttpServlet {
     private void requestProcessorAnnotation(String methodType, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pathInfo = req.getPathInfo();
         String[] pathArr = pathInfo.substring(1).split("/");
-        String controllerClassId = getController(pathArr);
+        String controllerClassId = getControllerClassName(pathArr[0]);
         String controllerMethodId = getMethod(pathArr);
 
         System.out.println("+++++++++++++++++++++++++++++++++");
@@ -87,6 +86,13 @@ public class FrontController extends HttpServlet {
                     MVCRoute annotation = method.getAnnotation(MVCRoute.class);
                     if (annotation.path().equals(pathInfo) && annotation.method().equals(methodType)) {
                         classMethod = method;
+                        if (method.isAnnotationPresent(Authenticated.class)) {
+//                            Authenticated authAnnotation = method.getAnnotation(Authenticated.class);
+                            if (!AuthUser.isUserAuthenticated()) {
+                                invokeControllerMethod("auth", "login", req, resp);
+                                return;
+                            }
+                        }
                         break;
                     }
                 }
@@ -130,9 +136,9 @@ public class FrontController extends HttpServlet {
 
     }
 
-    private String getController(String[] pathArr) {
+    private String getControllerClassName(String className) {
         try {
-            String controller = "controller." + pathArr[0].substring(0, 1).toUpperCase() + pathArr[0].substring(1) + "Controller";
+            String controller = "controller." + className.substring(0, 1).toUpperCase() + className.substring(1) + "Controller";
             return controller;
         } catch (Exception e) {
             return "controller.HomeController";
@@ -174,7 +180,27 @@ public class FrontController extends HttpServlet {
         requestProcessorAnnotation("POST", req, resp);
     }
 
-
+    private void invokeControllerMethod(String controllerPathName, String methodPathName, HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            Class<?> controllerReference = Class.forName(getControllerClassName(controllerPathName));
+            Object controllerInstance = controllerReference.newInstance();
+            Method[] allMethods = controllerReference.getDeclaredMethods();
+            for (Method method : allMethods) {
+                if (method.getName().equals(methodPathName)) {
+                    method.invoke(controllerInstance, req, resp);
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public static void redirectTo() {

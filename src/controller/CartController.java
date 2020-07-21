@@ -3,6 +3,7 @@ package controller;
 import framework.annotation.MVCRoute;
 import framework.controllerSystem.WebController;
 import model.Product;
+import model.system.AuthUser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +26,7 @@ public class CartController extends WebController {
 //            redirectAbsolutePath(resp, "/base/auth/login");
 //        }
 
-        while (getSessionAttrib(req, "logged_name") == null) {
+        while (!AuthUser.isUserAuthenticated()) {
             display(req, resp, "base/auth/login");
         }
 
@@ -45,8 +46,9 @@ public class CartController extends WebController {
             System.out.println(product);
             if (product == null) {
                 redirectAbsolutePath(resp, "/base/product/list");
+                return;
             } else {
-                cart.add(Product.fetchProductByID(id));
+                cart.add(product);
                 setSessionAttrib(req, "cart_list", cart);
             }
         } catch (SQLException e) {

@@ -164,6 +164,16 @@ public class Database {
         return this;
     }
 
+    public Database like(String column, Object likeValue) {
+        this.queryBuilder += " WHERE " + column + " LIKE " + "\"%" + likeValue + "%\"";
+        return this;
+    }
+
+    public Database count(String tableName) {
+        this.queryBuilder = "SELECT COUNT(*) AS entry_count FROM " + tableName;
+        return this;
+    }
+
     public Database andWhere(WhereClause whereClause) {
         this.queryBuilder += " AND " + getWhereElements(whereClause);
         return this;
@@ -208,6 +218,8 @@ public class Database {
         }
         return value;
     }
+
+
 
     public Database limit(int limit, int offset) {
         this.queryBuilder += " LIMIT " + offset + ", " + limit;

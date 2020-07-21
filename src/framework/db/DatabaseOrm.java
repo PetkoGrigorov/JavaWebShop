@@ -16,9 +16,12 @@ public class DatabaseOrm {
             throws SQLException, InstantiationException, IllegalAccessException, CustomOrmException {
 
         ArrayList<Object> objectCollection = new ArrayList<>();
+        Field[] allFields = classReference.getDeclaredFields();
+
         String tableName = getOrmTableName(classReference);
         ResultSet tableResultSet = Database.getInstance().selectAll(tableName).printQuery().fetch();
         while (tableResultSet.next()) {
+
             objectCollection.add(entryToObjectMapper(classReference, tableResultSet));
         }
         return objectCollection;
@@ -65,6 +68,7 @@ public class DatabaseOrm {
             if (columnName == null) {
                 continue;
             }
+            field.setAccessible(true);
             field.set(classInstance, tableResultSet.getString(columnName));
         }
         return classInstance;

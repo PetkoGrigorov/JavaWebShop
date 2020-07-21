@@ -4,6 +4,9 @@
 
 <jsp:include page="../sections/header.jsp"></jsp:include>
 
+
+
+
 <div>
     <form>
         <input type="text" style="display: block" placeholder="Shipping address">

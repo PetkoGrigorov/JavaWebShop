@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Product" %>
+<%@ page import="service.Form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="../sections/header.jsp"></jsp:include>
@@ -19,10 +20,14 @@
 
             String title = "<div style=\"display: inline-block; width: 200px\"> " + product.getTitle() + " </div>";
             String price = "<div style=\"display: inline-block; width:  50px\"> " + product.getPrice() + " </div>";
-            String remove = "<div style=\"display: inline-block; width:  50px\"><a href=\"remove?product_id=" + product.getProductId() + "\"> remove </a></div>";
+            String remove = "<div style=\"display: inline-block; width:  50px\">"; //<a href=\"remove?product_id=" + product.getProductId() + "\"> remove </a></div>";
 
             String separator = "<hr>";
-            out.print(title + price + remove + separator);
+            out.print(title + price + remove/* + separator*/);
+
+            Form.href(out, "/cart/remove?product_id=" + product.getProductId(), "remove");
+            out.print("</div>" + separator);
+
             sum = sum + Integer.parseInt(product.getPrice());
         }
 

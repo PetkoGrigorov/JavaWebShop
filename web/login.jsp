@@ -23,7 +23,7 @@
             ${message}
         </div>
 
-        <form method="post">
+        <form method="post" action="/JavaWebShop_war_exploded/base/auth/login">
             <input class="input" type="text" name="user_email">
             <input class="input" type="password" name="user_pass">
             <input class="input" type="submit">
