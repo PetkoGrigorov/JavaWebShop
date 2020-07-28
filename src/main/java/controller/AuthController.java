@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@MVCRouteController(value = "/auth/*")
 public class AuthController extends WebController {
 
     public void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -1,4 +1,5 @@
-<%@ page import="model.Product" %><%--
+<%@ page import="model.Product" %>
+<%@ page import="config.RouteMap" %><%--
   Created by IntelliJ IDEA.
   User: Acer_2
   Date: 6.7.2020 г.
@@ -18,9 +19,9 @@
             out.print("<div>" + product.getDescription() + "</div>");
             out.print("<div>" + product.getPrice() + "</div>");
 
-            String buy = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"/JavaWebShop_war_exploded/base/buy/pay?product_id=" + productID + "\">" + "Pay" + " </a></div>";
+            String buy = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"" + RouteMap.PREFIX + "/base/buy/pay?product_id=" + productID + "\">" + "Pay" + " </a></div>";
             out.print(buy);
-            String cartAdd = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"/JavaWebShop_war_exploded/base/cart/add?product_id=" + productID + "\">" + "Add to cart" + " </a></div>";
+            String cartAdd = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"" + RouteMap.PREFIX + "/base/cart/add?product_id=" + productID + "\">" + "Add to cart" + " </a></div>";
             out.print(cartAdd);
 
         }

@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Product" %>
 <%@ page import="service.Form" %>
+<%@ page import="config.RouteMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="../sections/header.jsp"></jsp:include>
@@ -12,7 +13,6 @@
 
         ArrayList<Product> cart = (ArrayList<Product>) request.getSession().getAttribute("cart_list");
         if (cart != null) {
-
 
         int sum = 0;
 
@@ -31,13 +31,17 @@
             sum = sum + Integer.parseInt(product.getPrice());
         }
 
-        out.print("<div> Sum: " + sum + "<div>");
+        if (cart.size() != 0) {
+            out.print("<div> Sum: " + sum + "<div>");
+            out.print("<div> </div>\n" +
+                    "<div><a href=\"" + RouteMap.PREFIX + "/base/buy/pay\">Pay</a></div>");
+        }
+
         }
     %>
+
 <div> </div>
-<div><a href="/JavaWebShop_war_exploded/base/buy/pay">Pay</a></div>
-<div> </div>
-<div style="display: inline-block; width: 500px"><a href="/JavaWebShop_war_exploded/base/product/list">Continue shopping</a></div>
+<div style="display: inline-block; width: 500px"><a href="${pageContext.request.contextPath}/base/product/list">Continue shopping</a></div>
 
 
 <jsp:include page="../sections/footer.jsp"></jsp:include>

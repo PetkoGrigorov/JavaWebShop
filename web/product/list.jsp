@@ -2,7 +2,8 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="model.Product" %><%--
+<%@ page import="model.Product" %>
+<%@ page import="config.RouteMap" %><%--
   Created by IntelliJ IDEA.
   User: Acer_2
   Date: 19.6.2020 г.
@@ -46,7 +47,7 @@
                 String title = "<div style=\"display: inline-block; width: 120px; text-transform: uppercase\"> <a id=\"list_element\" href=\"details?product_id=" + productID + "\">" + productTitle + " </a></div>";
                 String price = "<div style=\"display: inline-block; width: 90px\">price " + productPrice + "$</div>";
                 String buy = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"details?product_id=" + productID + "\">" + "Buy now" + " </a></div>";
-                String cartAdd = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"/JavaWebShop_war_exploded/base/cart/add?product_id=" + productID + "\">" + "Add to cart" + " </a></div>";
+                String cartAdd = "<div style=\"display: inline-block; width: 90px\"> <a id=\"list_element\" href=\"" + RouteMap.PREFIX + "/base/cart/add?product_id=" + productID + "\">" + "Add to cart" + " </a></div>";
                 String separator = "<hr>";
                 out.print(title + price + buy + cartAdd + separator);
             }

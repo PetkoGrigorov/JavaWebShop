@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class CartController extends WebController {
 
+
     @MVCRoute(path = "/cart/list", method = "GET")
     public void list(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -27,7 +28,8 @@ public class CartController extends WebController {
 //        }
 
         while (!AuthUser.isUserAuthenticated()) {
-            display(req, resp, "base/auth/login");
+//            display(req, resp, "base/auth/login");
+            redirectAbsolutePath(resp, "/base/auth/login");
         }
 
         ArrayList<Product> cart = null;

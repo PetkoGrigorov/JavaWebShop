@@ -1,5 +1,8 @@
 package framework.controllerSystem;
 
+import config.PageMap;
+import config.RouteMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +11,7 @@ import java.util.HashMap;
 
 public abstract class WebController {
 
-    private String absolutePath = "http://localhost:8080/JavaWebShop_war_exploded";
+    private String absolutePath = "http://localhost:8080" + RouteMap.PREFIX;
 
     public void redirectAbsolutePath(HttpServletResponse resp, String path) {
         try {

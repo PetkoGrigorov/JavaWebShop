@@ -64,7 +64,7 @@ public class FrontController extends HttpServlet {
     private void requestProcessorAnnotation(String methodType, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pathInfo = req.getPathInfo();
         String[] pathArr = pathInfo.substring(1).split("/");
-        String controllerClassId = getControllerClassName(pathArr[0]);
+        String  controllerClassId = getControllerClassName(pathArr[0]);
         String controllerMethodId = getMethod(pathArr);
 
         System.out.println("+++++++++++++++++++++++++++++++++");
@@ -77,7 +77,12 @@ public class FrontController extends HttpServlet {
 
 //        ================================================================================
         try {
-            Class<?> classReference = Class.forName(controllerClassId);
+            Class<?> classReference = null;
+            try {
+                classReference = Class.forName(controllerClassId);
+            } catch (ClassNotFoundException e) {
+                classReference = Class.forName("controller.PageNotFoundController");
+            }
             Object classInstance = classReference.newInstance();
             Method[] methodCollection = classReference.getDeclaredMethods();
             Method classMethod = null;
@@ -97,11 +102,14 @@ public class FrontController extends HttpServlet {
                     }
                 }
             }
+            if (classMethod == null) {
+                classMethod = classReference.getDeclaredMethod("index", HttpServletRequest.class, HttpServletResponse.class);
+            }
             System.out.println("Method to invoke: " + classMethod.getName());
             System.out.println("Object for the method: " + classInstance);
             classMethod.invoke(classInstance, req, resp);
 
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | ClassNotFoundException | NoSuchMethodException e) {
             e.printStackTrace();
         }
 //        ===================================================================================

@@ -37,7 +37,7 @@ public class User {
         return this.fName + " " + this.lName;
     }
 
-    public static void create(String username, String pass, String email, String fName, String lName) throws SQLException {
+    public static void create(final String username, final String pass, final String email, final String fName, final String lName) throws SQLException {
         Database.getInstance().insert("users", new HashMap<String, Object>(){{
             put("user_name", username);
             put("user_pass", pass);
@@ -55,7 +55,7 @@ public class User {
 
     public static void create(User user) throws CustomOrmException, SQLException, IllegalAccessException {
         DatabaseOrm.insert(user);
-        long lastInsertedID = Database.getInstance().getLastInsertedID();
+        final long lastInsertedID = Database.getInstance().getLastInsertedID();
         userId = (int) lastInsertedID;
         int userRoleID = 1;
         Database.getInstance().insert("user_roles", new HashMap<String, Object>(){{

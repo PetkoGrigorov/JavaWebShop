@@ -13,17 +13,11 @@
             login: ${logged_name}
         </div>
 
-<%
-//if (request.getAttribute("logged_name").equals("Hi koko")) {
-//    request.setAttribute("message", "Ha, ha, ha !!!");
-//}
-%>
-
         <div>
             ${message}
         </div>
 
-        <form method="post" action="/JavaWebShop_war_exploded/base/auth/login">
+        <form method="post" action="${pageContext.request.contextPath}/base/auth/login">
             <input class="input" type="text" name="user_email">
             <input class="input" type="password" name="user_pass">
             <input class="input" type="submit">
